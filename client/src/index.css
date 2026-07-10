@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #FFFFFF;
+  --color-foreground: #000000;
+  --color-muted: #F2F2F2;
+  --color-swiss-red: #FF3000;
+  --color-border: #000000;
+  
+  --font-sans: "Inter", Helvetica, Arial, sans-serif;
+  --font-serif: "Inter", Helvetica, Arial, sans-serif; /* Fallback to sans for everything in Swiss */
+  --font-mono: "Inter", Helvetica, Arial, sans-serif; /* Keep it uniform */
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-xl: none;
+  --shadow-2xl: none;
+  --shadow-inner: none;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Focus States */
+  button:focus-visible, 
+  a:focus-visible, 
+  [role="button"]:focus-visible,
+  input:focus-visible, 
+  textarea:focus-visible, 
+  select:focus-visible {
+    outline: 2px solid var(--color-swiss-red);
+    outline-offset: 2px;
+    border-color: var(--color-swiss-red);
+  }
+}
+
+@layer utilities {
+  .swiss-grid-pattern {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-color: transparent;
+  }
+
+  .swiss-dots {
+    background-image: radial-gradient(rgba(0,0,0,0.04) 2px, transparent 2px);
+    background-size: 16px 16px;
+    background-color: transparent;
+  }
+  
+  .swiss-diagonal {
+    background-image: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.02) 10px,
+      rgba(0,0,0,0.02) 12px
+    );
+    background-color: transparent;
+  }
+
+  .swiss-noise {
+    position: relative;
+  }
+  
+  .swiss-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.015;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
