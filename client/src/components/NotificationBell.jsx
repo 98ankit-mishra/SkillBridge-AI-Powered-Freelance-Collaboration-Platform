@@ -22,7 +22,7 @@ export default function NotificationBell() {
     
     // Setup socket connection
     const token = localStorage.getItem('token');
-    const socket = io('http://localhost:5000', {
+    const socket = io(import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000', {
       auth: { token }
     });
     
